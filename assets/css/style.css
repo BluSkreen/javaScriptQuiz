@@ -1,0 +1,50 @@
+:root {
+    /* Colors combinations sourced from khroma.co */
+    --moon-mist: #d4daca;
+    --pickled-bluewood: ##2b4951;
+    --tuna: #373a46;
+    --tahuna-sands: #eff2cd;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    background-color: var(--moon-mist);
+    color: var(--pickled-bluewood);
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px;
+    width: 100%;
+    padding-inline: 20px;
+    background-color: var(--tuna);
+    color: var(--tahuna-sands);
+}
+
+main {
+
+}
+
+#card {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--moon-mist);
+    color: var(--tuna);
+    width: 50vh;
+    margin: 60px auto;
+    border: 5px solid var(--tuna);
+    border-radius: 8px;
+}
+
+
+
+
+

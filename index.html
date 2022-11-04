@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <title>JavasScript Quiz</title>
+  </head>
+  <body>
+    <header>
+      <a><h2>View Highscores</h2></a>
+      <h2>Time: <span class="timer"></span></h2>
+    </header>
+    <main>
+      <!-- web apis activity 26 -->
+      <div id="card">
+        <h1 id="cardHeader">Coding Quiz Challenge</h1>
+        <p id="cardText">
+          Try to enter as many coding questions as you can in under a minute and
+          save your score. Click on "View Highscores" to show all the scores.
+        </p>
+        <!-- hide form -->
+        <form id="scoreForm">
+          <label id="formLabel"></label>
+          <input id="formInput" />
+          <!-- add submit button -->
+          <button id="formButton"></button>
+        </form>
+        <!-- add answer buttons -->
+        <ul id="buttons"></ul>
+      </div>
+    </main>
+    <script src="assets/js/script.js"></script>
+  </body>
+</html>

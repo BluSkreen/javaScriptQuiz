@@ -1,0 +1,51 @@
+
+
+var questions = [
+    {
+        "question": "filler?",
+        "a1": "filler",
+        etc...
+    },
+    {
+        "q2": etc..
+    },
+]
+
+
+starbutton.event listener (click function(event) {
+    clear screan
+    buildCard()
+    randomizeQuestions()
+    startGame()
+    displayHighScores()
+})
+
+
+function startGame {
+    time interval
+        while game started
+
+
+
+            if (question# < questions.length)
+                display question in card header
+                display answers in each button
+}
+
+function buildHomeCard {
+
+}
+
+function buildQuizCard {
+
+}
+
+function buildScoreForm {
+
+}
+
+function buildScoresCard {
+    
+}
+
+formEl.style.display = "none"; will hide formEl, "block" to display
