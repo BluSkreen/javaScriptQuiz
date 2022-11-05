@@ -49,3 +49,35 @@ function buildScoresCard {
 }
 
 formEl.style.display = "none"; will hide formEl, "block" to display
+
+
+DUE THURSDAY 11.3.22 @MIDNIGHT
+
+
+
+
+var question = [
+    title: "why is the sky blue?",
+    choices: ["because", "Oxygen:, "molecular"],
+    anwer: "Oxygen",
+]
+
+title: "what is the first object in the messier catalog?",
+choices: ["ring nebula", "crab nebula", "Hercules cluser"],
+answer: "crab nebula",
+
+
+console.log(questions[0].answer);
+
+subtract time when answer is wrong and you can make your own starting time for the quiz
+have atleast 5 questions up to 10-15
+
+any topic for the questions 
+
+start with just 2 questions and maybe 
+and answers like abcd until you figure out the functions and then add more stuff to it
+
+make a hide class and css is it to display none
+and then make a function to take it away from being hidden
+
+focus on the timer of this quiz LAST make sure literally everthing else works then go to it and maybe get local storage to work after the timer function

@@ -24,13 +24,13 @@ header {
     align-items: center;
     height: 70px;
     width: 100%;
-    padding-inline: 20px;
+    /*  */
     background-color: var(--tuna);
     color: var(--tahuna-sands);
 }
 
-main {
-
+.header {
+    padding-inline: 20px;
 }
 
 #card {
@@ -40,6 +40,7 @@ main {
     color: var(--tuna);
     width: 50vh;
     margin: 60px auto;
+    padding: 10px;
     border: 5px solid var(--tuna);
     border-radius: 8px;
 }
