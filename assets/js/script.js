@@ -1,34 +1,37 @@
 //card
 var cardHeaderEl = document.querySelector("#cardHeader");
 var cardTextEl = document.querySelector("#cardText");
+var scoresEl = document.querySelector("#scores");
 //form
 var scoreFormEl = document.querySelector("#scoreForm");
 var formLabelEl = document.querySelector("#formLabel");
+var formInputEl = document.querySelector("#formInput");
 var formButtonEl = document.querySelector("#formButton");
 //buttons
 var buttonsEl = document.querySelector("#buttons");
+//choice status under question card
+var choiceStatusEl = document.querySelector("#choiceStatus");
 // Array of objects, contains question, choices[], answer
 var questions = [
   {
     question: "How would you hide an element?",
     choices: [
-      "el.style.display = 'none';",
       "el.display = 'none';",
       "el.display.style = 'none';",
+      "el.style.display = 'none';",
       "el.style = 'none';",
     ],
-    answer: "el.style.display = 'none';",
+    answer: 2,
   },
   {
-    question:
-      "How would you assign an element to a variable using an id selector?",
+    question: "How would you assign an element to a variable using an id selector?",
     choices: [
-      "var El =  document.querySelector('#selector');",
       "var El =  quesrySelector('#selector');",
+      "var El =  document.querySelector('#selector');",
       "var El =  document(querySelector('#selector'));",
       "var El =  document.query.selector('#selector');",
     ],
-    answer: "var El =  document.querySelector('#selector');",
+    answer: 1,
   },
   {
     question: "What is a viable for loop header?",
@@ -38,20 +41,31 @@ var questions = [
       "for [var i = 0; i < 10; i++]",
       "for (var i = 0: i < 10: i++)",
     ],
-    answer: "for (var i = 0; i < 10; i++)",
+    answer: 0,
   },
   {
-    question:
-      "How do you change the text in an element using a parameter named li?",
+    question: "How do you change the text in an element using a parameter named li?",
     choices: [
-      "li.textContent = newText;",
       "li.display.textContent = newText;",
       "li = textContent(newText);",
+      "li.textContent = newText;",
       "li.style.textContent = newText;",
     ],
-    answer: "li.textContent = newText;",
+    answer: 2,
+  },
+  {
+    question: "How can you determin the type of the variable var?",
+    choices: [
+      "var.typeof;",
+      "var.typeof();",
+      "typeof.var;",
+      "typeof var;",
+    ],
+    answer: 3,
   },
 ];
+
+var score = 0;
 
 function displayTitleCard() {
   // The form is not used upon page loadup
@@ -63,19 +77,37 @@ function displayTitleCard() {
 }
 
 function displayQuestions() {
-  // hide form
+  // hide the unecessary
   scoreFormEl.style.display = "none";
-  //display question
-  // cardHeaderEl.textContent = questions[0].question;
-  //hide paragraph
-  cardTextEl.textContent = "";
-  for (var i = 0; i < questions.length; i++) {
-    cardHeaderEl.textContent = questions[i].question;
-    displayChoices(questions[i].choices);
-    buttons.addEventListener("click", function (event) {
-      var button = event.target;
-    });
-  }
+  cardTextEl.style.display = "none";
+  choiceStatusEl.textContent = "";
+
+  // Initialize first question
+  var questionNum = 0;
+  cardHeaderEl.textContent = questions[questionNum].question;
+  displayChoices(questions[questionNum].choices);
+
+  // if button is clicked then check answer and display the next
+  buttons.addEventListener("click", function (event) {
+    var button = event.target;
+    // compare clicked ID to answer
+    if (button.id == questions[questionNum].answer) {
+      score++;
+      choiceStatusEl.textContent = "Correct!";
+    } else {
+      choiceStatusEl.textContent = "Wrong!";
+    }
+    // Set up next question if available
+    if (questionNum < questions.length - 1) {
+      questionNum++;
+      cardHeaderEl.textContent = questions[questionNum].question;
+      displayChoices(questions[questionNum].choices);
+    } else {
+      // set up form if no more questions are left
+      displaySubmitCard();
+    }
+    console.log(score);
+  });
 }
 
 function displayChoices(choices) {
@@ -84,15 +116,45 @@ function displayChoices(choices) {
     var li = document.createElement("li"); // create <li>
     var button = document.createElement("button"); // create <button>
     button.textContent = choices[i]; // add choice text to button
+    button.setAttribute("id", i);
     li.appendChild(button); // append button to li (<li><button> </button><li>)
     buttonsEl.appendChild(li); // append the li to ul id = "buttons"
   }
 }
- 
-function displaySubmitCard() {}
 
-function displayHighScores() {}
+//form
+// var scoreFormEl = document.querySelector("#scoreForm");
+// var formLabelEl = document.querySelector("#formLabel");
+// var formButtonEl = document.querySelector("#formButton");
+function displaySubmitCard() {
+  // Show form element, hide buttons
+  scoreFormEl.style.display = "block";
+  buttonsEl.innerHTML = "";
+  cardHeaderEl.textContent = "Submit your score!";
+  formButtonEl.addEventListener("click", function (event) {
+    var initials = formInputEl.value;
+    localStorage.setItem(initials, score);
+    displayHighScores()
+  });
+}
+
+function displayHighScores() {
+  scoreFormEl.style.display = "none";
+  cardHeaderEl.textContent = "Highscores";
+  keys = Object.keys();
+  for (var i = 0; i < keys.length; i++) {
+    var key = keys[i];
+    var li = document.createElement("li"); // create <li>
+    score = key + ": " + localStorage[key];
+    li.textContent = score;
+    scoresEl.appendChild(li); // append the li to ul id = "buttons"
+  }
+}
 
 // displayTitleCard();
-// displayQuestions();
+displayQuestions();
 // displayChoices(questions[0].choices);
+// displaySubmitCard();
+// displayHighScores();
+
+
