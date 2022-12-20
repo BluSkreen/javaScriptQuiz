@@ -1,6 +1,9 @@
 # Javascript Quiz
 ![license badge](https://img.shields.io/badge/license-MIT-blue)
 
+## Link
+https://bluskreen.github.io/javaScriptQuiz/
+
 ## Description
 A mini quiz for javascript, using javascript.
 
