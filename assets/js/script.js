@@ -122,6 +122,8 @@ function displayQuestions() {
     if (button.id == questions[questionNum].answer) {
       score++;
       choiceStatusEl.textContent = "Correct!";
+    } else if (questionNum === 0) {
+      choiceStatusEl.textContent = "";
     } else {
       choiceStatusEl.textContent = "Wrong!";
     }
