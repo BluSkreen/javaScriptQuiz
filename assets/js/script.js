@@ -1,3 +1,4 @@
+var timerEl = document.querySelector("#timer");
 //card
 var cardHeaderEl = document.querySelector("#cardHeader");
 var cardTextEl = document.querySelector("#cardText");
@@ -67,6 +68,7 @@ var questions = [
 
 var score = 0;
 
+var secondsLeft = 30;
 function displayTitleCard() {
   // The form is not used upon page loadup
   scoreFormEl.style.display = "none";
@@ -74,6 +76,32 @@ function displayTitleCard() {
   cardHeaderEl.textContent = "Coding Quiz Challenge";
   cardTextEl.textContent =
     'Try to enter as many coding questions as you can in under a minute and save your score. Click on "View Highscores" to show all the scores.';
+
+  var li = document.createElement("li"); // create <li>
+  var button = document.createElement("button"); // create <button>
+  button.textContent = "Start Your Quiz!"; // add choice text to button
+  button.setAttribute("id", "start");
+  li.appendChild(button); // append button to li (<li><button> </button><li>)
+  buttonsEl.appendChild(li); // append the li to ul id = "buttons"
+
+  var start = document.querySelector("#start")
+  start.addEventListener("click", timer);
+}
+
+function timer(e) {
+  e.preventDefault();
+  displayQuestions();
+  var timerInterval = setInterval(function () {
+    secondsLeft--;
+    timerEl.textContent = secondsLeft;
+
+    if (secondsLeft <= 0) {
+      // Calls function to create and append image
+      displaySubmitCard();
+      // Stops execution of action at set interval
+      clearInterval(timerInterval);
+    }
+  }, 1000);
 }
 
 function displayQuestions() {
@@ -141,7 +169,7 @@ function displaySubmitCard() {
 function displayHighScores() {
   scoreFormEl.style.display = "none";
   cardHeaderEl.textContent = "Highscores";
-  keys = Object.keys();
+  keys = Object.keys(localStorage);
   for (var i = 0; i < keys.length; i++) {
     var key = keys[i];
     var li = document.createElement("li"); // create <li>
@@ -151,8 +179,8 @@ function displayHighScores() {
   }
 }
 
-// displayTitleCard();
-displayQuestions();
+displayTitleCard();
+// displayQuestions();
 // displayChoices(questions[0].choices);
 // displaySubmitCard();
 // displayHighScores();
